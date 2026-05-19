@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #FAF6F0;
+  --navy: #1E2D5E;
+  --border: rgba(30, 45, 94, 0.2);
+  --red: #DC3545;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--navy);
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  background: var(--bg);
+}
+
+.nav-left { display: flex; gap: 36px; }
+
+.nav-left a {
+  text-decoration: none;
+  color: var(--navy);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding-bottom: 2px;
+}
+
+.nav-left a.active { border-bottom: 1px solid var(--navy); }
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-center a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.nav-right { width: 200px; } /* balance spacer */
+
+/* ── HERO ── */
+.hero {
+  height: 100vh;
+  background-color: #c8c4be;
+  background-image: url('images/홈페이지%20메인.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+.hero-text p {
+  font-size: clamp(1.1rem, 2.5vw, 1.9rem);
+  font-weight: 400;
+  color: var(--navy);
+}
+
+/* ── DIVIDER ── */
+hr { border: none; border-top: 1px solid var(--border); }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 80px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-center { text-align: center; padding: 60px 80px; }
+
+.section-center p {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--navy);
+}
+
+/* ── MAIN PORTFOLIO (home preview) ── */
+.portfolio-label {
+  text-align: center;
+  padding: 48px 0 40px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 80px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.video-card {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #c8c4be;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-card iframe {
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.video-card .overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  padding: 32px 16px 16px;
+  color: #fff;
+}
+
+.video-card .overlay .tag {
+  font-size: 11px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.video-card .overlay .title {
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  display: block;
+}
+
+.play-btn {
+  position: absolute;
+  width: 52px; height: 52px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--navy);
+  pointer-events: none;
+}
+
+.video-card a {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* ── ABOUT SECTION ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #c8c4be;
+  display: block;
+}
+
+.about-text h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 36px;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 2.2;
+  margin-bottom: 20px;
+}
+
+.about-text a.insta {
+  display: inline-block;
+  margin-top: 24px;
+  text-decoration: none;
+  color: var(--navy);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--navy);
+  padding-bottom: 2px;
+}
+
+/* ── PORTFOLIO PAGE ── */
+.portfolio-header {
+  padding: 120px 80px 0;
+}
+
+.portfolio-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  margin-bottom: 60px;
+}
+
+.chapter {
+  padding: 0 80px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.chapter h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.chapter h3 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── VIDEO MAKING PAGE ── */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 120px 80px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  background: #c8c4be;
+  display: block;
+}
+
+.service-info h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.price-current {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.price-original {
+  font-size: 0.95rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.sale-badge {
+  background: var(--red);
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  letter-spacing: 0.05em;
+}
+
+.service-desc {
+  font-size: 0.92rem;
+  line-height: 2.2;
+  margin-bottom: 32px;
+}
+
+.btn-contact {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 36px;
+  letter-spacing: 0.05em;
+}
+
+/* ── CONTACT PAGE ── */
+.contact-wrap {
+  padding: 130px 80px 80px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-wrap h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.contact-wrap .subtitle {
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  margin-bottom: 60px;
+  color: var(--navy);
+}
+
+.form-field {
+  margin-bottom: 36px;
+}
+
+.form-field label {
+  display: block;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  color: var(--navy);
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--navy);
+  padding: 8px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--navy);
+  outline: none;
+  resize: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: rgba(30,45,94,0.35); }
+
+.phone-row { display: flex; gap: 12px; align-items: center; }
+.phone-row input { flex: 1; }
+.phone-sep { color: var(--navy); font-size: 14px; }
+
+.btn-submit {
+  display: block;
+  margin: 48px auto 0;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 56px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .nav-right { display: none; }
+
+  .about-grid,
+  .service-grid { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+
+  .video-grid,
+  .chapter-grid { padding: 0 24px 48px; grid-template-columns: 1fr; }
+
+  .section, .section-center { padding: 48px 24px; }
+  .portfolio-header, .chapter { padding-left: 24px; padding-right: 24px; }
+  .contact-wrap { padding: 110px 24px 60px; }
+}

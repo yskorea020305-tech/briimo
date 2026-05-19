@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — BRiiMO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="video-making.html">Video Making</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" class="active">Contact Us</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html"><img src="images/logo.png" alt="BRiiMO" class="nav-logo"></a>
+    </div>
+    <div class="nav-right"></div>
+  </nav>
+
+  <div class="contact-wrap">
+    <h1>1:1 상담 문의</h1>
+    <p class="subtitle">원하시는 내용을 꼼꼼히 작성해 주시면 최대한 빠르게 연락드리겠습니다 :)</p>
+
+    <!--
+      FormSubmit.co 사용법:
+      1. 아래 action의 이메일 주소를 본인 이메일로 바꾸세요.
+      2. 처음 제출하면 FormSubmit이 인증 메일을 보냅니다 — 확인 후 활성화됩니다.
+    -->
+    <form action="https://formsubmit.co/yskorea020305@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="[BRiiMO] 새로운 상담 문의">
+      <input type="hidden" name="_next" value="contact.html?sent=true">
+      <input type="hidden" name="_captcha" value="false">
+
+      <div class="form-field">
+        <label>이름</label>
+        <input type="text" name="name" placeholder="이름을 입력해 주세요" required>
+      </div>
+
+      <div class="form-field">
+        <label>연락처</label>
+        <div class="phone-row">
+          <input type="text" name="phone1" placeholder="010" maxlength="4">
+          <span class="phone-sep">-</span>
+          <input type="text" name="phone2" placeholder="0000" maxlength="4">
+          <span class="phone-sep">-</span>
+          <input type="text" name="phone3" placeholder="0000" maxlength="4">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>내용</label>
+        <textarea name="message" rows="6" placeholder="문의 내용을 자유롭게 작성해 주세요" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">작성</button>
+    </form>
+  </div>
+
+  <script>
+    // 제출 완료 메시지
+    if (new URLSearchParams(window.location.search).get('sent') === 'true') {
+      const wrap = document.querySelector('.contact-wrap');
+      const msg = document.createElement('p');
+      msg.style.cssText = 'text-align:center;margin-top:24px;font-family:Noto Sans KR,sans-serif;font-size:14px;';
+      msg.textContent = '문의가 접수되었습니다. 빠르게 연락드리겠습니다 :)';
+      wrap.appendChild(msg);
+    }
+  </script>
+
+</body>
+</html>
