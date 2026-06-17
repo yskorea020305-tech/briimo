@@ -65,7 +65,7 @@ nav {
 .hero {
   height: 100vh;
   background-color: #c8c4be;
-  background-image: url('images/홈페이지%20메인.jpg');
+  background-image: url('hero.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -418,6 +418,19 @@ hr { border: none; border-top: 1px solid var(--border); }
   padding: 14px 56px;
   cursor: pointer;
   letter-spacing: 0.05em;
+}
+
+/* ── DETAIL PAGE ── */
+.detail-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px 80px;
+}
+
+.detail-page img {
+  width: 100%;
+  display: block;
 }
 
 /* ── RESPONSIVE ── */
