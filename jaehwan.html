@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For. 재환님</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── 색상 팔레트 ── */
+    :root {
+      --beige:        #F2EDE3;
+      --beige-dark:   #E4DDD0;
+      --beige-light:  #FAF7F2;
+      --navy:         #1C2B4A;
+      --navy-light:   #2E4070;
+      --khaki:        #6B6B4A;
+      --khaki-light:  #9A9A72;
+      --text-main:    #2A2A2A;
+      --text-sub:     #5A5A5A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--beige);
+      font-family: 'Gowun Batang', serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    /* ── 편지지 래퍼 ── */
+    .letter-wrapper {
+      width: 100%;
+      max-width: 680px;
+      background-color: var(--beige-light);
+      border: 1px solid var(--beige-dark);
+      box-shadow:
+        0 2px 8px rgba(28, 43, 74, 0.06),
+        0 12px 40px rgba(28, 43, 74, 0.08);
+      padding: 64px 72px 80px;
+    }
+
+    /* ── 상단 발신인 ── */
+    .from-tag {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--khaki);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    /* ── 수신인 ── */
+    .to-tag {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    /* ── 구분선 ── */
+    .divider {
+      width: 32px;
+      height: 1px;
+      background-color: var(--khaki-light);
+      margin: 24px 0;
+    }
+
+    /* ── 편지 본문 ── */
+    .letter-body {
+      font-size: 15.5px;
+      line-height: 2.1;
+      color: var(--text-main);
+      word-break: keep-all;
+    }
+
+    .letter-body p {
+      margin-bottom: 1.6em;
+    }
+
+    .letter-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── 인용 (화향백리) ── */
+    .quote-block {
+      border-left: 2px solid var(--navy);
+      padding: 16px 24px;
+      margin: 40px 0;
+      background-color: var(--beige);
+    }
+
+    .quote-block .quote-main {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .quote-block .quote-sub {
+      font-size: 13.5px;
+      color: var(--khaki);
+      line-height: 1.8;
+    }
+
+    /* ── 영상 카드 ── */
+    .video-section {
+      margin-top: 60px;
+      padding-top: 48px;
+      border-top: 1px solid var(--beige-dark);
+    }
+
+    .video-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--khaki);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .video-card {
+      display: block;
+      width: 100%;
+      background-color: var(--navy);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      transition: opacity 0.25s ease;
+    }
+
+    .video-card:hover {
+      opacity: 0.88;
+    }
+
+    /* 썸네일 이미지 */
+    .video-card .thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-card .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28, 43, 74, 0.25);
+      transition: background 0.25s ease;
+    }
+
+    .video-card:hover .play-overlay {
+      background: rgba(28, 43, 74, 0.45);
+    }
+
+    .video-card .play-icon {
+      width: 56px;
+      height: 56px;
+      border: 1.5px solid rgba(242, 237, 227, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .video-card:hover .play-icon {
+      border-color: rgba(242, 237, 227, 1);
+      transform: scale(1.08);
+    }
+
+    .video-card .play-icon svg {
+      margin-left: 4px;
+    }
+
+    .video-card .card-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(28, 43, 74, 0.85) 0%, transparent 100%);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--beige);
+    }
+
+    /* ── 서명 ── */
+    .signature {
+      margin-top: 64px;
+      text-align: right;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--khaki);
+    }
+
+    /* ── 하단 브랜드 ── */
+    .footer-brand {
+      margin-top: 48px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--khaki-light);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ── 모바일 반응형 ── */
+    @media (max-width: 640px) {
+      body {
+        padding: 32px 16px;
+      }
+
+      .letter-wrapper {
+        padding: 48px 32px 60px;
+      }
+
+      .letter-body {
+        font-size: 14.5px;
+        line-height: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="letter-wrapper">
+
+    <!-- 발신인 -->
+    <div class="from-tag">From. 임수현</div>
+
+    <!-- 수신인 -->
+    <div class="to-tag">To. 재환님</div>
+
+    <div class="divider"></div>
+
+    <!-- 편지 본문 -->
+    <div class="letter-body">
+
+      <p>안녕하세요, 재환님. 임수현입니다.</p>
+
+      <p>재환님의 이야기가 담긴 영상을 마무리하며, 어떻게 전달드리면 좋을까 고민하다 이렇게 글을 먼저 쓰게 됐습니다.</p>
+
+      <p>영상을 만들기로 마음먹었을 때, 가장 먼저 떠오른 주제는 진심이었습니다.</p>
+
+      <p>재환님을 보며 느꼈던 것은, 눈빛과 소리로 빚은 따뜻한 온도를 조심스럽게 전하려는 그 마음이었습니다. 뜨거운 마음을 그대로 전하면 다칠까 봐, 소중히 식혀 좋은 모양으로 건네려는 그 노력이요.</p>
+
+      <p>가장 날것의 퍼포먼스에 그런 따뜻한 진심이 담겨 있었기에, 제 마음이 이끌렸던 것 같습니다.</p>
+
+      <p>그렇게 인연이 닿아 재환님이 쌓아온 14년, 아니 그 이상의 역사 속 진심을 다듬을 수 있게 되어 영광입니다.</p>
+
+      <p>이번 작업을 하며 처음 시도해보는 형식이라 머리를 꽁꽁 싸매며 고뇌하기도 했는데, 그만큼 애정이 가는 영상이 되었습니다.</p>
+
+      <div class="quote-block">
+        <div class="quote-main">"화향백리, 인향만리(花香百里, 人香萬里)"</div>
+        <div class="quote-sub">꽃의 향은 백 리를 가지만, 사람의 향은 만 리를 간다.</div>
+      </div>
+
+      <p>이 말처럼 재환님의 향이 이 영상을 통해 널리 퍼져나갔으면 좋겠습니다. 지금 봐도 좋지만, 몇 년, 몇십 년 후에 꺼내 봤을 때 뜨거웠던 청춘을 기억할 수 있는 작은 삶의 기록으로 남았으면 합니다.</p>
+
+      <p>앞으로도 건강히, 꾸준히 재환님만의 가장 개인적인 음악을 해주시길 바랍니다.</p>
+
+      <p>앞으로 재환님의 음악을 들을 때마다 2026년 초여름이 생각날 것 같습니다.</p>
+
+      <p>이 영상 속에 재환님과 그 순간을 함께한 관객들의 소중한 감정들이 잘 담겼길 바랍니다.</p>
+
+      <p>감사합니다.</p>
+
+    </div>
+
+    <!-- 영상 카드 -->
+    <div class="video-section">
+      <div class="video-label">Video</div>
+
+      <a class="video-card" href="https://youtu.be/SlogyIYvczw" target="_blank" rel="noopener">
+        <img class="thumbnail" src="images/jaehwan-thumbnail.jpg" alt="나의 관객이 되어줄래요" />
+        <div class="play-overlay">
+          <div class="play-icon">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L17 10L1 19V1Z" stroke="#F2EDE3" stroke-width="1.2" stroke-linejoin="round" fill="rgba(242,237,227,0.15)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-caption">영상 보러가기</div>
+      </a>
+    </div>
+
+    <!-- 서명 -->
+    <div class="signature">임수현 드림.</div>
+
+  </div>
+
+  <!-- 하단 브랜드 -->
+  <div class="footer-brand">Briimo</div>
+
+</body>
+</html>
